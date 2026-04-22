@@ -1,0 +1,9 @@
+spring:
+  jackson:
+    time-zone: America/Lima
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

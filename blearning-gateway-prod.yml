@@ -1,0 +1,14 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: WARN
+
+management:
+  endpoint:
+    health:
+      show-details: never

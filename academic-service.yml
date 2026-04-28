@@ -1,9 +1,21 @@
 spring:
-  application:
-    name: academic-service
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
 
-server:
-  port: 2023
+eureka:
+  client:
+    enabled: ${EUREKA_CLIENT_ENABLED:true}
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka/}
 
 management:
   endpoints:
@@ -13,6 +25,9 @@ management:
   endpoint:
     health:
       show-details: always
+  tracing:
+    sampling:
+      probability: 1.0
 
 springdoc:
   api-docs:
@@ -28,3 +43,4 @@ resilience4j:
         sliding-window-size: 5
         failure-rate-threshold: 50
         wait-duration-in-open-state: 10s
+

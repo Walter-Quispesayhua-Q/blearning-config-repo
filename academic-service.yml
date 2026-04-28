@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: academic-service
+
+server:
+  port: 2023
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /doc/swagger-ui.html
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      userServiceClient:
+        sliding-window-size: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
